@@ -25,8 +25,8 @@ const catReducer = (state = initialState, action) => {
   switch (type) {
     case 'SETCATEGORY':
       let activeCategory = payload;
-      // let categories = initialState.categories;
-      return activeCategory;
+      let categories = initialState.categories;
+      return { activeCategory, categories };
 
     default:
       return state;

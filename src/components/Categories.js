@@ -8,7 +8,7 @@ const Categories = props => {
       <h1>Categories</h1>
       <ul>
         {props.catReducer.categories.map(cat => {
-          return <li>{cat.displayName}</li>
+          return <li onClick={() => props.setActiveCategory(cat.name)} >{cat.displayName}</li>
         })}
       </ul>
     </section>
