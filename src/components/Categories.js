@@ -6,12 +6,12 @@ import { setActiveCategory, reset } from '../store/category.js';
 const Categories = props => {
   return (
     <section>
-      <Typography variant="h5">Browse Categories:</Typography>
-      <ButtonGroup color="primary">
+      <Typography gutterBottom variant="h5">Browse Categories:</Typography>
+      <ButtonGroup gutterBottom color="primary" variant="text">
+        <Button onClick={() => props.reset()}>all</Button>
         {props.catReducer.categories.map(cat => {
           return <Button onClick={() => props.setActiveCategory(cat.name)} >{cat.displayName}</Button>
         })}
-        <Button onClick={() => props.reset()}>reset active category</Button>
       </ButtonGroup>
     </section>
   )

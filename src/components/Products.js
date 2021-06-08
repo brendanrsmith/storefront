@@ -1,29 +1,45 @@
-import { Card, CardContent, Grid, Typography } from '@material-ui/core';
-import { useEffect } from 'react';
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import { getAllProds, getActiveProds } from '../store/product';
 
 const Products = props => {
 
-  // useEffect(() => {
-  //   getActiveProds(props.catReducer.activeCategory)
-  // }, [props.catReducer.activeCategory])
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  });
+
+  const classes = useStyles();
 
   return (
     <section>
       <Grid container >
-      {/* {props.prodReducer.products.filter(product => product.category === props.catReducer.activeCategory).map(product => { */}
-      {props.prodReducer.products.map(product => {
-        return (
+        {/* {props.prodReducer.products.filter(product => product.category === props.catReducer.activeCategory).map(product => { */}
+        {props.prodReducer.products.map(product => {
+          return (
             <Grid item >
-              <Card variant="outlined">
+              <Card variant="outlined" className={classes.root}>
+                <CardActionArea>
 
-                <CardContent>
-                  <Typography variant="h5">{product.name}</Typography>
-                  <Typography variant="body2">{product.description}</Typography>
-                  <Typography variant="body1">${product.price}</Typography>
-                </CardContent>
+                  <CardMedia
+                    className={classes.media}
+                    image={product.url}
+                    title={product.name}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h6">{product.name}</Typography>
+                    <Typography color="textSecondary" variant="body2">{product.description}</Typography>
+                    <Typography variant="body1">${product.price}</Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button color="primary">Shop</Button>
+                </CardActions>
 
               </Card>
             </Grid>

@@ -6,7 +6,7 @@ function Header() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar >
           <Typography variant="h5">Storefront</Typography>
         </Toolbar>
       </AppBar>
