@@ -1,9 +1,10 @@
+import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 const ActiveCategory = props => {
   return (
     <section>
-      <h1>Active Category: {props.catReducer.activeCategory}</h1>
+      <Typography variant="h2" align="center" component="h1">{props.catReducer.activeCategory}</Typography>
     </section>
   )
 }

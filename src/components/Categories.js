@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import { setActiveCategory, reset } from '../store/category.js';
@@ -5,6 +6,7 @@ import { setActiveCategory, reset } from '../store/category.js';
 const Categories = props => {
   return (
     <section>
+      <Typography variant="h5">Browse Categories:</Typography>
       <ul>
         {props.catReducer.categories.map(cat => {
           return <li onClick={() => props.setActiveCategory(cat.name)} >{cat.displayName}</li>

@@ -1,8 +1,11 @@
+import { Typography } from '@material-ui/core';
 
-function Footer () {
+function Footer() {
 
   return (
-    <footer>© Brendan Smith 2021</footer>
+    <footer>
+      <Typography variant="h6" component="p" align="center" gutterBottom={true}>© Brendan Smith 2021</Typography>
+    </footer>
   )
 }
 

@@ -1,3 +1,4 @@
+import { Card, CardContent, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 // import { setActiveCategory, reset } from '../store/category.js';
@@ -6,10 +7,18 @@ const Products = props => {
 
   return (
     <section>
-      <h2>products</h2>
       <ul>
-        {props.prodReducer.products.filter(cat => cat.category === props.catReducer.activeCategory).map(cat => {
-          return <li >{cat.name}</li>
+        {props.prodReducer.products.filter(product => product.category === props.catReducer.activeCategory).map(product => {
+          return (
+            <Card >
+              <CardContent>
+                <Typography variant="h5">{product.name}</Typography>
+                <Typography variant="body2">{product.description}</Typography>
+                <Typography variant="body1">${product.price}</Typography>
+              </CardContent>
+              
+            </Card>
+          )
         })}
       </ul>
     </section>
