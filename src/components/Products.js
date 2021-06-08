@@ -19,7 +19,6 @@ const Products = props => {
   return (
     <section>
       <Grid container >
-        {/* {props.prodReducer.products.filter(product => product.category === props.catReducer.activeCategory).map(product => { */}
         {props.prodReducer.products.map(product => {
           return (
             <Grid item >
