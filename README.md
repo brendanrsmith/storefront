@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [deployed site]()
+- [deployed site](https://youthful-mclean-bad63e.netlify.app/)
 - [Pull Request: Application State with Redux](https://github.com/brendigler/storefront/pull/1)
 
 ### Setup
