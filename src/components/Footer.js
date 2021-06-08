@@ -2,7 +2,7 @@
 function Footer () {
 
   return (
-    <p>Footer component which shows your copyright and contact information</p>
+    <footer>© Brendan Smith 2021</footer>
   )
 }
 

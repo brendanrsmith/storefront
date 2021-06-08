@@ -1,9 +1,24 @@
+import { connect } from 'react-redux';
 
-function Products () {
+// import { setActiveCategory, reset } from '../store/category.js';
+
+const Products = props => {
 
   return (
-    <h1>Products</h1>
+    <section>
+      <h2>products</h2>
+      <ul>
+        {props.prodReducer.products.filter(cat => cat.category === props.catReducer.activeCategory).map(cat => {
+          return <li >{cat.name}</li>
+        })}
+      </ul>
+    </section>
   )
 }
 
-export default Products;
+const mapStateToProps = state => ({
+  prodReducer: state.prodReducer,
+  catReducer: state.catReducer
+});
+
+export default connect(mapStateToProps)(Products);

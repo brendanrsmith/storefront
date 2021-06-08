@@ -28,6 +28,9 @@ const catReducer = (state = initialState, action) => {
       let categories = initialState.categories;
       return { activeCategory, categories };
 
+    case 'RESET':
+      return initialState;
+
     default:
       return state;
   }
