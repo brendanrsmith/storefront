@@ -47,12 +47,16 @@ let initialState = {
 }
 
 const prodReducer = (state = initialState, action) => {
-  let { type } = action;
+  let { type, payload } = action;
 
   switch (type) {
-    case 'SETCATEGORY':
+    case 'GETALLPRODUCTS':
       let products = initialState.products;
-      return { products };
+      return { products: products };
+
+    case 'SETCATEGORY':
+      let activeProducts = initialState.products.filter(product => product.category === payload);
+      return { products: activeProducts };
 
     case 'RESET':
       return initialState;
@@ -62,11 +66,17 @@ const prodReducer = (state = initialState, action) => {
   }
 }
 
-// export const setActiveCategory = (category) => {
-//   return {
-//     type: 'SETCATEGORY',
-//     payload: category
-//   }
-// }
+export const getAllProds = () => {
+  return {
+    type: 'GETALLPRODUCTS'
+  }
+}
+
+export const getActiveProds = (category) => {
+  return {
+    type: 'SETCATEGORY',
+    payload: category
+  }
+}
 
 export default prodReducer;
