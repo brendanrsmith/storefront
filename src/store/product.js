@@ -9,9 +9,9 @@ let initialState = {
     },
     {
       category: 'socks',
-      name: 'red socks',
+      name: 'brown socks',
       price: 5.99,
-      description: 'its a sock that is red',
+      description: 'its a sock that is brown',
       inventory: 34
     },
     {
