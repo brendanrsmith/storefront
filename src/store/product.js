@@ -64,16 +64,23 @@ const prodReducer = (state = initialState, action) => {
     //   return { activeProducts: activeProducts };
 
     case 'ADDTOCART':
-      const updateInventory = state.products.map(product => {
+      const addedInventory = state.products.map(product => {
         if (product === payload) {
-          return {...product, inventory: product.inventory - 1}
+          return { ...product, inventory: product.inventory - 1 }
         }
         return product;
       })
-      return { products: updateInventory }
+      return { products: addedInventory }
 
-    // case 'RESET':
-    //   return initialState;
+    case 'REMOVEFROMCART':
+      const removedInventory = state.products.map(product => {
+        if (product.name === payload.name) {
+          return { ...product, inventory: product.inventory + 1 }
+        }
+        return product;
+      })
+      return { products: removedInventory }
+
 
     default:
       return state;

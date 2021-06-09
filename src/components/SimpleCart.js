@@ -1,5 +1,6 @@
-import { Grid, makeStyles } from '@material-ui/core';
+import { Button, Grid, makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { removeFromCart } from '../store/cart';
 
 function SimpleCart(props) {
   const useStyles = makeStyles({
@@ -20,7 +21,10 @@ function SimpleCart(props) {
     <Grid item xs className={classes.cart}>
       {props.cartReducer.cart.map(item => {
         return (
-          <p>{item.name}</p>
+          <div>
+            <p>{item.name}</p>
+            <Button onClick={() => props.removeFromCart(item)}>x</Button>
+          </div>
         )
       })}
     </Grid>
@@ -29,8 +33,9 @@ function SimpleCart(props) {
 
 const mapStateToProps = state => ({
   cartReducer: state.cartReducer,
+  prodReducer: state.prodReducer,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { removeFromCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleCart);
