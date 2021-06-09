@@ -1,23 +1,36 @@
 import { Grid, makeStyles } from '@material-ui/core';
+import { connect } from 'react-redux';
 
-function SimpleCart() {
+function SimpleCart(props) {
   const useStyles = makeStyles({
     cart: {
-      position: "absolute",
-      right: "24px",
+      zIndex: 100,
+      position: "fixed",
+      right: "16px",
       top: "64px",
-      width: "60px",
-      backgroundColor: "pink"
+      width: "80px",
+      backgroundColor: "#eee",
+      opacity: "0.5"
     }
   });
 
   const classes = useStyles();
 
-  return(
+  return (
     <Grid item xs className={classes.cart}>
-      <p>simple cart</p>
+      {props.cartReducer.cart.map(item => {
+        return (
+          <p>{item.name}</p>
+        )
+      })}
     </Grid>
   )
 }
 
-export default SimpleCart;
+const mapStateToProps = state => ({
+  cartReducer: state.cartReducer,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleCart);

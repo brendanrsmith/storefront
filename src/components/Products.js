@@ -31,7 +31,7 @@ const Products = props => {
   return (
     <Grid className={classes.root} container spacing={4} >
       {props.prodReducer.products
-        .filter(product => product.category === props.catReducer.activeCategory)
+        .filter(product => props.catReducer.activeCategory? product.category === props.catReducer.activeCategory : true)
         .filter(product => product.inventory > 0)
         .map(product => {
           return (

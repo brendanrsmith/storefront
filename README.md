@@ -7,6 +7,7 @@
 ### Links and Resources
 
 - [deployed site](https://youthful-mclean-bad63e.netlify.app/)
+- [Pull Request: Combined Reducers](https://github.com/brendigler/storefront/pull/2)
 - [Pull Request: Application State with Redux](https://github.com/brendigler/storefront/pull/1)
 
 ### Setup
