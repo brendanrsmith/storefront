@@ -2,12 +2,14 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid
 import { connect } from 'react-redux';
 
 import { getAllProds, getActiveProds } from '../store/product';
+import { addToCart } from '../store/cart';
 
 const Products = props => {
 
   const useStyles = makeStyles({
     root: {
-      maxWidth: "90vw",
+      maxWidth: "100vw",
+      padding: "8px",
       margin: "auto"
     },
     productGrid: {
@@ -28,41 +30,43 @@ const Products = props => {
 
   return (
     <Grid className={classes.root} container spacing={4} >
-      {props.prodReducer.products.map(product => {
-        return (
-          <Grid item xs={12} sm={6} md={3} >
-            <Card variant="outlined" className={classes.card}>
-              <CardActionArea>
+      {props.prodReducer.products
+        .filter(product => product.inventory > 0)
+        .map(product => {
+          return (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={product.name}>
+              <Card variant="outlined" className={classes.card}>
+                <CardActionArea>
 
-                <CardMedia
-                  className={classes.media}
-                  image={product.url}
-                  title={product.name}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h6">{product.name}</Typography>
-                  <Typography color="textSecondary" variant="body2">{product.description}</Typography>
-                  <Typography variant="body1">${product.price}</Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button color="primary">Add to cart</Button>
-                <Button color="primary">Details</Button>
-              </CardActions>
+                  <CardMedia
+                    className={classes.media}
+                    image={product.url}
+                    title={product.name}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h6">{product.name}</Typography>
+                    <Typography color="textSecondary" variant="body2">{product.description}</Typography>
+                    <Typography variant="body1">${product.price}</Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button color="primary" onClick={() => props.addToCart(product)}>Add to cart</Button>
+                  <Button color="primary">Details</Button>
+                </CardActions>
 
-            </Card>
-          </Grid>
-        )
-      })}
+              </Card>
+            </Grid>
+          )
+        })}
     </Grid>
   )
 }
 
 const mapStateToProps = state => ({
   prodReducer: state.prodReducer,
-  catReducer: state.catReducer
+  catReducer: state.catReducer,
 });
 
-const mapDispatchToProps = { getAllProds, getActiveProds };
+const mapDispatchToProps = { getAllProds, getActiveProds, addToCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

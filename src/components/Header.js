@@ -1,7 +1,8 @@
 import { AppBar, Button, Grid, makeStyles, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
+import { connect } from 'react-redux';
 
-function Header() {
+function Header(props) {
 
   const useStyles = makeStyles({
     toolbar: {
@@ -24,7 +25,7 @@ function Header() {
             </Grid>
             <Grid item xs className={classes.cart}>
               <Button href="#">
-                <Typography>Cart</Typography>
+                <Typography>Cart({props.cartReducer.cart.length})</Typography>
               </Button>
             </Grid>
           </Grid>
@@ -35,4 +36,10 @@ function Header() {
   )
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  cartReducer: state.cartReducer
+});
+
+const mapDispatchToProps = { };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

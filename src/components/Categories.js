@@ -19,7 +19,7 @@ const Categories = props => {
       <ButtonGroup gutterBottom color="primary" variant="text">
         <Button onClick={() => props.reset()}>all</Button>
         {props.catReducer.categories.map(cat => {
-          return <Button onClick={() => props.setActiveCategory(cat.name)} >{cat.displayName}</Button>
+          return <Button onClick={() => props.setActiveCategory(cat.name)} key={cat.name}>{cat.displayName}</Button>
         })}
       </ButtonGroup>
     </Grid >

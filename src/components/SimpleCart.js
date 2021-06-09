@@ -5,7 +5,7 @@ function SimpleCart() {
     cart: {
       position: "absolute",
       right: "24px",
-      top: "68px",
+      top: "64px",
       width: "60px",
       backgroundColor: "pink"
     }
