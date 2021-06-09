@@ -9,7 +9,7 @@ const cartReducer = (state = initialState, action) => {
     case 'ADDTOCART':
       let product = payload; // TODO activeproduct
       return { cart: [...state.cart, product] }
-    case 'RESET':
+    case 'CARTRESET':
       return initialState;
     default:
       return state;

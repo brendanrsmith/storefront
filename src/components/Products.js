@@ -1,7 +1,7 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import { getAllProds, getActiveProds } from '../store/product';
+import { getAllProds, setActiveProds } from '../store/product';
 import { addToCart } from '../store/cart';
 
 const Products = props => {
@@ -31,6 +31,7 @@ const Products = props => {
   return (
     <Grid className={classes.root} container spacing={4} >
       {props.prodReducer.products
+        .filter(product => product.category === props.catReducer.activeCategory)
         .filter(product => product.inventory > 0)
         .map(product => {
           return (
@@ -67,6 +68,6 @@ const mapStateToProps = state => ({
   catReducer: state.catReducer,
 });
 
-const mapDispatchToProps = { getAllProds, getActiveProds, addToCart };
+const mapDispatchToProps = { getAllProds, setActiveProds, addToCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

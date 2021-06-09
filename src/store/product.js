@@ -45,7 +45,7 @@ let initialState = {
       name: 'Kid\'s sunglasses',
       price: 100.99,
       description: 'its dumb sunglasses',
-      inventory: 0,
+      inventory: 1,
       url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.R37jZuwbBcQ7WotnCstNygHaHa%26pid%3DApi&f=1'
     },
 
@@ -57,15 +57,23 @@ const prodReducer = (state = initialState, action) => {
 
   switch (type) {
     case 'GETALLPRODUCTS':
-      let products = initialState.products;
-      return { products: products };
+      return { products: initialState.products };
 
-    case 'SETCATEGORY':
-      let activeProducts = initialState.products.filter(product => product.category === payload);
-      return { products: activeProducts };
+    // case 'SETCATEGORY':
+    //   let activeProducts = state.products.filter(product => product.category === payload);
+    //   return { activeProducts: activeProducts };
 
-    case 'RESET':
-      return initialState;
+    case 'ADDTOCART':
+      const updateInventory = state.products.map(product => {
+        if (product === payload) {
+          return {...product, inventory: product.inventory - 1}
+        }
+        return product;
+      })
+      return { products: updateInventory }
+
+    // case 'RESET':
+    //   return initialState;
 
     default:
       return state;
@@ -78,7 +86,7 @@ export const getAllProds = () => {
   }
 }
 
-export const getActiveProds = (category) => {
+export const setActiveProds = (category) => {
   return {
     type: 'SETCATEGORY',
     payload: category
