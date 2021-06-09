@@ -1,6 +1,7 @@
 import { Button, Grid, makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { removeFromCart } from '../store/cart';
+import { removeFromCart } from '../../store/cart';
+
 
 function SimpleCart(props) {
   const useStyles = makeStyles({

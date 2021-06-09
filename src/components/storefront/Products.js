@@ -1,8 +1,8 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import { getAllProds, setActiveProds } from '../store/product';
-import { addToCart } from '../store/cart';
+import { getAllProds, setActiveProds } from '../../store/product';
+import { addToCart } from '../../store/cart';
 
 const Products = props => {
 

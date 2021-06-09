@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import { setActiveCategory, reset } from '../store/category.js';
+import { setActiveCategory, reset } from '../../store/category.js';
 
 const Categories = props => {
 
