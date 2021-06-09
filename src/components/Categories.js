@@ -1,19 +1,28 @@
-import { Button, ButtonGroup, Typography } from '@material-ui/core';
+import { Button, ButtonGroup, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import { setActiveCategory, reset } from '../store/category.js';
 
 const Categories = props => {
+
+  const useStyles = makeStyles({
+    category: {
+      margin: "24px"
+    }
+  });
+
+  const classes = useStyles();
+
   return (
-    <section>
-      <Typography variant="h5">Browse Categories:</Typography>
-      <ButtonGroup color="primary">
+    <Grid item xs className={classes.category}>
+      <Typography gutterBottom variant="h5">Browse Categories:</Typography>
+      <ButtonGroup gutterBottom color="primary" variant="text">
+        <Button onClick={() => props.reset()}>all</Button>
         {props.catReducer.categories.map(cat => {
-          return <Button onClick={() => props.setActiveCategory(cat.name)} >{cat.displayName}</Button>
+          return <Button onClick={() => props.setActiveCategory(cat.name)} key={cat.name}>{cat.displayName}</Button>
         })}
-        <Button onClick={() => props.reset()}>reset active category</Button>
       </ButtonGroup>
-    </section>
+    </Grid >
   )
 }
 
