@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+const api = 'https://brsmith-auth-api.herokuapp.com/api/v1/products';
+
+
 let initialState = {
   products: [
     {
@@ -56,12 +61,9 @@ const prodReducer = (state = initialState, action) => {
   let { type, payload } = action;
 
   switch (type) {
-    case 'GETALLPRODUCTS':
-      return { products: initialState.products };
 
-    // case 'SETCATEGORY':
-    //   let activeProducts = state.products.filter(product => product.category === payload);
-    //   return { activeProducts: activeProducts };
+    case 'GET_PRODS':
+      return { products: payload };
 
     case 'ADDTOCART':
       const addedInventory = state.products.map(product => {
@@ -81,22 +83,21 @@ const prodReducer = (state = initialState, action) => {
       })
       return { products: removedInventory }
 
-
     default:
       return state;
   }
 }
 
-export const getAllProds = () => {
-  return {
-    type: 'GETALLPRODUCTS'
-  }
+export const getRemoteData = () => async dispatch => {
+  let response = await axios.get(api);
+  console.log(response.data);
+  dispatch(getAction(response.data))
 }
 
-export const setActiveProds = (category) => {
+export const getAction = (data) => {
   return {
-    type: 'SETCATEGORY',
-    payload: category
+    type: 'GET_PRODS',
+    payload: data
   }
 }
 

@@ -1,21 +1,9 @@
+import axios from 'axios';
+
+const api = 'https://brsmith-auth-api.herokuapp.com/api/v1/categories';
+
 let initialState = {
-  categories: [
-    {
-      name: 'hats',
-      displayName: 'Hats!',
-      description: 'things you put on your head'
-    },
-    {
-      name: 'socks',
-      displayName: 'Socks!',
-      description: 'things you put on your feet'
-    },
-    {
-      name: 'sunglasses',
-      displayName: 'Sunglasses!',
-      description: 'things you put on your nose'
-    },
-  ],
+  categories: [],
   activeCategory: null,
 }
 
@@ -25,8 +13,11 @@ const catReducer = (state = initialState, action) => {
   switch (type) {
     case 'SETCATEGORY':
       let activeCategory = payload;
-      let categories = initialState.categories;
+      let categories = state.categories;
       return { activeCategory, categories };
+
+    case 'GET_CATS':
+      return { categories: payload, activeCategory: initialState.activeCategory };
 
     case 'RESET':
       return { ...state, activeCategory: initialState.activeCategory };
@@ -49,4 +40,16 @@ export const reset = () => {
   }
 }
 
+export const getRemoteData = () => async dispatch => {
+  let response = await axios.get(api);
+  console.log(response.data);
+  dispatch(getAction(response.data))
+}
+
+export const getAction = (data) => {
+  return {
+    type: 'GET_CATS',
+    payload: data
+  }
+}
 export default catReducer;

@@ -1,10 +1,22 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
-import { getAllProds, setActiveProds } from '../../store/product';
+import { getRemoteData } from '../../store/product';
 import { addToCart } from '../../store/cart';
 
 const Products = props => {
+
+  const fetchProducts = (e) => {
+    e && e.preventDefault();
+    props.get();
+  }
+
+  useEffect(() => {
+    fetchProducts();
+    // eslint-disable-next-line
+  }, []);
+
 
   const useStyles = makeStyles({
     root: {
@@ -31,7 +43,7 @@ const Products = props => {
   return (
     <Grid className={classes.root} container spacing={4} >
       {props.prodReducer.products
-        .filter(product => props.catReducer.activeCategory? product.category === props.catReducer.activeCategory : true)
+        .filter(product => props.catReducer.activeCategory ? product.category === props.catReducer.activeCategory : true)
         .filter(product => product.inventory > 0)
         .map(product => {
           return (
@@ -68,6 +80,9 @@ const mapStateToProps = state => ({
   catReducer: state.catReducer,
 });
 
-const mapDispatchToProps = { getAllProds, setActiveProds, addToCart };
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (product) => dispatch(addToCart(product)),
+  get: () => dispatch(getRemoteData())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
