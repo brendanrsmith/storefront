@@ -1,10 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import catReducer from './category';
 import prodReducer from './product';
 import cartReducer from './cart';
-import thunk from 'redux-thunk';
 
 let reducers = combineReducers({ catReducer, prodReducer, cartReducer });
 

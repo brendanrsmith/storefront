@@ -42,7 +42,6 @@ export const reset = () => {
 
 export const getRemoteData = () => async dispatch => {
   let response = await axios.get(api);
-  console.log(response.data);
   dispatch(getAction(response.data))
 }
 

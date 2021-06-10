@@ -2,8 +2,7 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
-import { getRemoteData } from '../../store/product';
-import { addToCart } from '../../store/cart';
+import { getRemoteData, putRemoteData } from '../../store/product';
 
 const Products = props => {
 
@@ -81,7 +80,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (product) => dispatch(addToCart(product)),
+  addToCart: (product) => dispatch(putRemoteData(product, true)),
   get: () => dispatch(getRemoteData())
 });
 

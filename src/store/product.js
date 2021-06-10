@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { addToCart, removeFromCart } from './cart';
 
 const api = 'https://brsmith-auth-api.herokuapp.com/api/v1/products';
 
@@ -65,23 +66,26 @@ const prodReducer = (state = initialState, action) => {
     case 'GET_PRODS':
       return { products: payload };
 
-    case 'ADDTOCART':
-      const addedInventory = state.products.map(product => {
-        if (product === payload) {
-          return { ...product, inventory: product.inventory - 1 }
-        }
-        return product;
-      })
-      return { products: addedInventory }
+    // case 'PUT_PRODS':
+    //   return { }
 
-    case 'REMOVEFROMCART':
-      const removedInventory = state.products.map(product => {
-        if (product.name === payload.name) {
-          return { ...product, inventory: product.inventory + 1 }
-        }
-        return product;
-      })
-      return { products: removedInventory }
+    // case 'ADDTOCART':
+    //   const addedInventory = state.products.map(product => {
+    //     if (product === payload) {
+    //       return { ...product, inventory: product.inventory - 1 }
+    //     }
+    //     return product;
+    //   })
+    //   return { products: addedInventory }
+
+    // case 'REMOVEFROMCART':
+    //   const removedInventory = state.products.map(product => {
+    //     if (product.name === payload.name) {
+    //       return { ...product, inventory: product.inventory + 1 }
+    //     }
+    //     return product;
+    //   })
+    //   return { products: removedInventory }
 
     default:
       return state;
@@ -90,8 +94,18 @@ const prodReducer = (state = initialState, action) => {
 
 export const getRemoteData = () => async dispatch => {
   let response = await axios.get(api);
-  console.log(response.data);
   dispatch(getAction(response.data))
+}
+
+export const putRemoteData = (product, incrementor) => async dispatch => {
+  let inventory = (await axios.get(`${api}/${product._id}`)).data.inventory;
+  const update = { ...product, inventory: incrementor ? inventory - 1 : inventory + 1 }
+  let response = await axios.put(`${api}/${product._id}`, update)
+  console.log('inventory: ', response.data.inventory);
+  if (response.status) {
+    incrementor ? dispatch(addToCart(product)) : dispatch(removeFromCart(product));
+    // dispatch(getRemoteData());
+  }
 }
 
 export const getAction = (data) => {
