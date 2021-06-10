@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const ActiveCategory = props => {
   return (
     <section>
-      <Typography gutterBottom variant="h2" align="center" component="h1">{props.catReducer.activeCategory}</Typography>
+      <Typography gutterBottom variant="h4" align="center" component="h1">{props.catReducer.activeCategory ? props.catReducer.activeCategory.toUpperCase() : ''}</Typography>
     </section>
   )
 }

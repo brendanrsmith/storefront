@@ -1,9 +1,20 @@
 import { Button, ButtonGroup, Grid, makeStyles, Typography } from '@material-ui/core';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { setActiveCategory, reset } from '../store/category.js';
+import { setActiveCategory, reset, getRemoteData } from '../../store/category';
 
 const Categories = props => {
+
+  const fetchCategories = (e) => {
+    e && e.preventDefault();
+    props.get();
+  }
+
+  useEffect(() => {
+    fetchCategories();
+    // eslint-disable-next-line
+  }, []);
 
   const useStyles = makeStyles({
     category: {
@@ -30,6 +41,10 @@ const mapStateToProps = state => ({
   catReducer: state.catReducer
 });
 
-const mapDispatchToProps = { setActiveCategory, reset }
+const mapDispatchToProps = (dispatch) => ({ 
+  setActiveCategory: (cat) => dispatch(setActiveCategory(cat)),
+  reset: () => dispatch(reset()), 
+  get: () => dispatch(getRemoteData()) 
+}) // updated syntax from demo TODO: idk how this is working... 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
