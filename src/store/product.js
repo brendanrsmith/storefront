@@ -6,55 +6,14 @@ const api = 'https://brsmith-auth-api.herokuapp.com/api/v1/products';
 
 let initialState = {
   products: [
-    {
-      category: 'hats',
-      name: 'Red hat',
-      price: 50.99,
-      description: 'its a hat that is red',
-      inventory: 32,
-      url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fJ1Yr6ZE4C3Y6IKPxC9bQQHaHa%26pid%3DApi&f=1'
-    },
-    {
-      category: 'socks',
-      name: 'Brown socks',
-      price: 5.99,
-      description: 'its a sock that is brown',
-      inventory: 34,
-      url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Y9YZZeT-9h1Ma-2JhEAZfgHaHC%26pid%3DApi&f=1'
-    },
-    {
-      category: 'socks',
-      name: 'Green socks',
-      price: 15.99,
-      description: 'its socks that is green',
-      inventory: 11,
-      url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.xegKpCts_0Ur2vmDEuoKGgHaLH%26pid%3DApi&f=1'
-    },
-    {
-      category: 'hats',
-      name: 'Blue hat',
-      price: 59.99,
-      description: 'its a hat that is blue',
-      inventory: 24,
-      url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.06KoufHB-2sFEDrIwURW6AHaHa%26pid%3DApi&f=1'
-    },
-    {
-      category: 'sunglasses',
-      name: 'Boomer sunglasses',
-      price: 500.99,
-      description: 'its aviator sunglasses',
-      inventory: 3,
-      url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Q-3E_zcmUAN1IJXrQbFUpAHaHa%26pid%3DApi&f=1'
-    },
-    {
-      category: 'sunglasses',
-      name: 'Kid\'s sunglasses',
-      price: 100.99,
-      description: 'its dumb sunglasses',
-      inventory: 1,
-      url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.R37jZuwbBcQ7WotnCstNygHaHa%26pid%3DApi&f=1'
-    },
-
+    // {
+    //   category: 'hats',
+    //   name: 'Red hat',
+    //   price: 50.99,
+    //   description: 'its a hat that is red',
+    //   inventory: 32,
+    //   url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fJ1Yr6ZE4C3Y6IKPxC9bQQHaHa%26pid%3DApi&f=1'
+    // },
   ],
 }
 
@@ -99,8 +58,8 @@ export const putRemoteData = (product, incrementor) => async dispatch => {
   let response = await axios.put(`${api}/${product._id}`, update)
   console.log('inventory: ', response.data.inventory);
   if (response.status) {
-    console.log(response);
     incrementor ? dispatch(addToCart(response.data)) : dispatch(removeFromCart(product));
+    dispatch(getRemoteData());
   }
 }
 

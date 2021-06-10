@@ -3,7 +3,13 @@ import axios from 'axios';
 const api = 'https://brsmith-auth-api.herokuapp.com/api/v1/categories';
 
 let initialState = {
-  categories: [],
+  categories: [
+    // {
+    // name: "sunglasses"
+    // description: " sunglasses are worn on your nose."
+    // displayName: "Sunglasses!"
+    // }
+  ],
   activeCategory: null,
 }
 
