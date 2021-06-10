@@ -65,10 +65,6 @@ const prodReducer = (state = initialState, action) => {
 
     case 'GET_PRODS':
       return { products: payload };
-
-    // case 'PUT_PRODS':
-    //   return { }
-
     // case 'ADDTOCART':
     //   const addedInventory = state.products.map(product => {
     //     if (product === payload) {
@@ -86,7 +82,6 @@ const prodReducer = (state = initialState, action) => {
     //     return product;
     //   })
     //   return { products: removedInventory }
-
     default:
       return state;
   }
@@ -97,14 +92,15 @@ export const getRemoteData = () => async dispatch => {
   dispatch(getAction(response.data))
 }
 
+// TODO: this is gnarly, should get its logic cleaned up
 export const putRemoteData = (product, incrementor) => async dispatch => {
   let inventory = (await axios.get(`${api}/${product._id}`)).data.inventory;
   const update = { ...product, inventory: incrementor ? inventory - 1 : inventory + 1 }
   let response = await axios.put(`${api}/${product._id}`, update)
   console.log('inventory: ', response.data.inventory);
   if (response.status) {
-    incrementor ? dispatch(addToCart(product)) : dispatch(removeFromCart(product));
-    // dispatch(getRemoteData());
+    console.log(response);
+    incrementor ? dispatch(addToCart(response.data)) : dispatch(removeFromCart(product));
   }
 }
 

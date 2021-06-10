@@ -24,7 +24,6 @@ const Products = props => {
       margin: "auto"
     },
     productGrid: {
-
     },
     card: {
       height: '100%',
@@ -49,7 +48,6 @@ const Products = props => {
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.name}>
               <Card variant="outlined" className={classes.card}>
                 <CardActionArea>
-
                   <CardMedia
                     className={classes.media}
                     image={product.url}
@@ -65,7 +63,6 @@ const Products = props => {
                   <Button color="primary" onClick={() => props.addToCart(product)}>Add to cart</Button>
                   <Button color="primary">Details</Button>
                 </CardActions>
-
               </Card>
             </Grid>
           )
