@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
 import { getRemoteData, putRemoteData } from '../../store/product';
+import { Link } from 'react-router-dom';
 
 const Products = props => {
 
@@ -61,7 +62,9 @@ const Products = props => {
                 </CardActionArea>
                 <CardActions>
                   <Button color="primary" onClick={() => props.addToCart(product)}>Add to cart</Button>
-                  <Button color="primary">Details</Button>
+                  <Button color="primary">
+                    <Link to={`/products/${product._id}`}>Details</Link>
+                  </Button>
                 </CardActions>
               </Card>
             </Grid>
