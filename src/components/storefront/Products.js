@@ -35,6 +35,10 @@ const Products = props => {
       paddingTop: '56.25%',
       height: 140,
     },
+    link: {
+      textDecoration: "none",
+      textDecorationLine: "none"
+    }
   });
 
   const classes = useStyles();
@@ -62,9 +66,9 @@ const Products = props => {
                 </CardActionArea>
                 <CardActions>
                   <Button color="primary" onClick={() => props.addToCart(product)}>Add to cart</Button>
-                  <Button color="primary">
-                    <Link to={`/products/${product._id}`}>Details</Link>
-                  </Button>
+                  <Link to={`/products/${product._id}`} className="link">
+                    <Button color="primary">Details</Button>
+                  </Link>
                 </CardActions>
               </Card>
             </Grid>
