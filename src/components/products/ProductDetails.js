@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getRemoteData, putRemoteData } from '../../store/product';
