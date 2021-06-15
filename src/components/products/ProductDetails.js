@@ -1,4 +1,4 @@
-import { Button , Card, CardMedia, makeStyles} from '@material-ui/core';
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getRemoteData, putRemoteData } from '../../store/product';
@@ -19,14 +19,17 @@ function ProductDetails(props) {
     root: {
       maxWidth: "100vw",
       padding: "8px",
-      margin: "auto"
+      margin: "auto",
+      justifyContent: "center"
+
     },
     productGrid: {
     },
     card: {
       height: '100%',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      padding: "8px",
     },
     media: {
       paddingTop: '56.25%',
@@ -35,34 +38,41 @@ function ProductDetails(props) {
     link: {
       textDecoration: "none",
       textDecorationLine: "none"
+    },
+    buy: {
+      width: "100%"
     }
   });
 
   const classes = useStyles();
 
   return (
-    <main>
-      <p>product details: {props.match.params.id}</p>
+    <Grid className={classes.root} container spacing={4} >
       {props.prodReducer.products
         .filter(product => props.match.params.id === product._id)
         .map(product => {
           return (
-            <Card className={classes.root}>
-              <h1>{product.name}</h1>
-              <p>Category {product.category}</p>
-              <CardMedia
-                className={classes.media}
-                image={product.url}
-                title={product.name} />
-              <p>Inventory {product.inventory}</p>
-              <p>description {product.description}</p>
-              <p>${product.price}</p>
-              <Button color="secondary" onClick={() => props.addToCart(product)}>Buy</Button>
-            </Card>
+            <Grid item xs={8}>
+              <Card className={classes.card}>
+                  <Typography variant="h4">{product.name}</Typography>
+                  <Typography variant="body1">{product.description}</Typography>
+                  <CardMedia
+                    className={classes.media}
+                    image={product.url}
+                    title={product.name} />
+                  <CardContent>
+                    <Typography>{product.inventory} left in stock</Typography>
+                    <Typography>${product.price}</Typography>
+                  </CardContent>
+                <CardActions>
+                  <Button className={classes.buy} color="primary" variant="contained" onClick={() => props.addToCart(product)}>Buy</Button>
+                </CardActions>
+              </Card>
+            </Grid>
           )
         })
       }
-    </main>
+    </Grid>
   )
 }
 

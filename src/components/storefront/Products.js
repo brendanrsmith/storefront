@@ -37,7 +37,6 @@ const Products = props => {
     },
     link: {
       textDecoration: "none",
-      textDecorationLine: "none"
     }
   });
 
@@ -52,21 +51,21 @@ const Products = props => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.name}>
               <Card variant="outlined" className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={product.url}
-                    title={product.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6">{product.name}</Typography>
-                    <Typography color="textSecondary" variant="body2">{product.description}</Typography>
-                    <Typography variant="body1">${product.price}</Typography>
-                  </CardContent>
-                </CardActionArea>
+
+                <CardMedia
+                  className={classes.media}
+                  image={product.url}
+                  title={product.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h6">{product.name}</Typography>
+                  <Typography color="textSecondary" variant="body2">{product.description}</Typography>
+                  <Typography variant="body1">${product.price}</Typography>
+                </CardContent>
+
                 <CardActions>
                   <Button color="primary" onClick={() => props.addToCart(product)}>Add to cart</Button>
-                  <Link to={`/products/${product._id}`} className="link">
+                  <Link to={`/products/${product._id}`} className={classes.link}>
                     <Button color="primary">Details</Button>
                   </Link>
                 </CardActions>

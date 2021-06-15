@@ -9,6 +9,9 @@ function Header(props) {
     toolbar: {
       background: "#efefef",
     },
+    link: {
+      textDecoration: "none",
+    },
     cart: {
       textAlign: "right",
     }
@@ -21,14 +24,14 @@ function Header(props) {
           <Grid container>
             <Grid item xs>
               <Button>
-                <Link to={`/`}>
+                <Link to={`/`} className={classes.link}>
                 <Typography variant="h5">Storefront</Typography>
                 </Link>
               </Button>
             </Grid>
             <Grid item xs className={classes.cart}>
               <Button>
-                <Link to={`/cart`}>
+                <Link to={`/cart`} className={classes.link}>
                   <Typography>Cart({props.cartReducer.cart.length})</Typography>
                 </Link>
               </Button>
