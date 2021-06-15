@@ -1,6 +1,7 @@
 import { AppBar, Button, Grid, makeStyles, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Header(props) {
 
@@ -8,8 +9,11 @@ function Header(props) {
     toolbar: {
       background: "#efefef",
     },
+    link: {
+      textDecoration: "none",
+    },
     cart: {
-      textAlign: "right"
+      textAlign: "right",
     }
   })
   const classes = useStyles();
@@ -19,13 +23,17 @@ function Header(props) {
         <Toolbar className={classes.toolbar} >
           <Grid container>
             <Grid item xs>
-              <Button href="#">
+              <Button>
+                <Link to={`/`} className={classes.link}>
                 <Typography variant="h5">Storefront</Typography>
+                </Link>
               </Button>
             </Grid>
             <Grid item xs className={classes.cart}>
-              <Button href="#">
-                <Typography>Cart({props.cartReducer.cart.length})</Typography>
+              <Button>
+                <Link to={`/cart`} className={classes.link}>
+                  <Typography>Cart({props.cartReducer.cart.length})</Typography>
+                </Link>
               </Button>
             </Grid>
           </Grid>
@@ -40,6 +48,6 @@ const mapStateToProps = state => ({
   cartReducer: state.cartReducer
 });
 
-const mapDispatchToProps = { };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

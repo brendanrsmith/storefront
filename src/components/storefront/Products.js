@@ -1,8 +1,9 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
 import { getRemoteData, putRemoteData } from '../../store/product';
+import { Link } from 'react-router-dom';
 
 const Products = props => {
 
@@ -34,6 +35,9 @@ const Products = props => {
       paddingTop: '56.25%',
       height: 140,
     },
+    link: {
+      textDecoration: "none",
+    }
   });
 
   const classes = useStyles();
@@ -47,21 +51,23 @@ const Products = props => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.name}>
               <Card variant="outlined" className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={product.url}
-                    title={product.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6">{product.name}</Typography>
-                    <Typography color="textSecondary" variant="body2">{product.description}</Typography>
-                    <Typography variant="body1">${product.price}</Typography>
-                  </CardContent>
-                </CardActionArea>
+
+                <CardMedia
+                  className={classes.media}
+                  image={product.url}
+                  title={product.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h6">{product.name}</Typography>
+                  <Typography color="textSecondary" variant="body2">{product.description}</Typography>
+                  <Typography variant="body1">${product.price}</Typography>
+                </CardContent>
+
                 <CardActions>
                   <Button color="primary" onClick={() => props.addToCart(product)}>Add to cart</Button>
-                  <Button color="primary">Details</Button>
+                  <Link to={`/products/${product._id}`} className={classes.link}>
+                    <Button color="primary">Details</Button>
+                  </Link>
                 </CardActions>
               </Card>
             </Grid>

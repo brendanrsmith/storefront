@@ -1,21 +1,23 @@
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import Categories from './components/storefront/Categories';
-import Products from './components/storefront/Products';
-import ActiveCategory from './components/storefront/ActiveCategory';
 import { CssBaseline } from '@material-ui/core';
 import '@fontsource/roboto';
-import SimpleCart from './components/cart/SimpleCart';
+import { Route, Switch } from 'react-router-dom';
+
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Home from './Home';
+import ShoppingCart from './components/cart/ShoppingCart';
+import ProductDetails from './components/products/ProductDetails';
 
 function App() {
   return (
     <div className="App">
       <CssBaseline />
       <Header />
-      <Categories />
-      <SimpleCart />
-      <ActiveCategory />
-      <Products />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/cart' component={ShoppingCart} />
+        <Route path='/products/:id' component={ProductDetails} />
+      </Switch>
       <Footer />
     </div>
   );
