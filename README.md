@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [deployed site](https://youthful-mclean-bad63e.netlify.app/)
+- [deployed site](https://www.brendansmith.dev/storefront/)
 - [Pull Request: Additional Topics](https://github.com/brendigler/storefront/pull/4)
 - [Pull Request: Asynchronous Actions](https://github.com/brendigler/storefront/pull/3)
 - [Pull Request: Combined Reducers](https://github.com/brendigler/storefront/pull/2)
