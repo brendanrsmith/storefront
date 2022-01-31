@@ -41,10 +41,10 @@ const mapStateToProps = state => ({
   catReducer: state.catReducer
 });
 
-const mapDispatchToProps = (dispatch) => ({ 
+const mapDispatchToProps = (dispatch) => ({
   setActiveCategory: (cat) => dispatch(setActiveCategory(cat)),
-  reset: () => dispatch(reset()), 
-  get: () => dispatch(getRemoteData()) 
+  reset: () => dispatch(reset()),
+  get: () => dispatch(getRemoteData())
 }) // updated syntax from demo TODO: idk how this is working... 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
