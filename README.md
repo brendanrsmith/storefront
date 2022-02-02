@@ -5,7 +5,7 @@
 ### Author: Brendan Smith
 
 ### Description
-	A React web application using Redux for state management, React-router for routing, Axios for network requests, deployed on Github Pages. An Express api server is deployed on Heroku, using MongoDB for data persistence. 
+A React web application using Redux for state management, React-router for routing, Axios for network requests, deployed on Github Pages. An Express api server is deployed on Heroku, using MongoDB for data persistence. 
 
 ### Links and Resources
 
